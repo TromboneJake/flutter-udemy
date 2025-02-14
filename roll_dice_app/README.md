@@ -2,6 +2,9 @@
 
 A simple Flutter app that lets you roll various polyhedral dice, including d4, d6, d8, d10, d12, and d20. This expanded version of the course project allows users to select their desired die type and features custom artwork I had generated with a Python script.  
 
+<img src="https://github.com/TromboneJake/flutter-udemy/blob/main/images/roll_dice_app_portrait.png" alt="Screenshot of the Roll Dice App" width=33%>
+
+
 ## ✨ Features  
 - Choose from multiple polyhedral dice (d4, d6, d8, d10, d12, d20).  
 - Randomized dice rolls. 
