@@ -21,7 +21,7 @@ Each folder in this repository corresponds to a specific section of the course, 
 Throughout the cours, I will build several real-world projects, including:
 - [**Roll Dice App**](https://github.com/TromboneJake/flutter-udemy/tree/main/roll_dice_app): The Roll Dice App is a simple Flutter application that simulates rolling a dice. I added the ability to choose a polyhedral die and some custom artwork.
 - [**Quiz App**](https://github.com/TromboneJake/flutter-udemy/tree/main/quiz_app): The Quiz App is a multi-screen Flutter application that allows users to take a quiz and see their score and correct answers at the end. I changed the questions and may add functionality to upload custom question sets later.
-- **Expense Tracker App**
+- [**Expense Tracker App**](https://github.com/TromboneJake/flutter-udemy/tree/main/expense_tracker_app): The Expense Tracker App is a responsive and adaptive app for tracking expenses and displaying them in a list as well as visually in a chart by category. Needs functionality to store and persist data. 
 - **ToDo App**
 - **Meals App**
 - **Shopping List App**
