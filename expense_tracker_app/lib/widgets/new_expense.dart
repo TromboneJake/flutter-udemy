@@ -173,6 +173,9 @@ class _NewExpenseState extends State<NewExpense> {
                               _selectedDate == null
                                   ? 'No date selected'
                                   : formatter.format(_selectedDate!),
+                              style: TextStyle(
+                                color: Theme.of(ctx).primaryColorLight,
+                              ),
                             ),
                             IconButton(
                               onPressed: _presentDatePicker,
@@ -208,6 +211,9 @@ class _NewExpenseState extends State<NewExpense> {
                               _selectedDate == null
                                   ? 'No date selected'
                                   : formatter.format(_selectedDate!),
+                              style: TextStyle(
+                                color: Theme.of(ctx).primaryColorLight,
+                              ),
                             ),
                             IconButton(
                               onPressed: _presentDatePicker,
