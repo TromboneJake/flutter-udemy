@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_app/keys/checkable_todo_item.dart';
 import 'package:todo_app/keys/new_item.dart';
+import 'package:todo_app/keys/edit_item.dart';
 import 'package:hive/hive.dart';
 import 'package:todo_app/todo.dart';
 import 'package:todo_app/priority.dart';
@@ -67,6 +69,26 @@ class _KeysState extends State<Keys> {
     taskBox.add(item);
   }
 
+  void _openEditItemOverlay(Todo todo) {
+    showAdaptiveDialog(
+      context: context,
+      builder: (modalContext) => EditItem(item: todo, onEditItem: _editItem),
+    );
+  }
+
+  void _editItem(Todo originalItem, Todo item) {
+    final index = _todos.indexOf(originalItem);
+    final isDone = checkedTasksBox.get(originalItem.text) ?? false;
+    if (index != -1) {
+      setState(() {
+        _todos[index] = item;
+      });
+      taskBox.putAt(index, item);
+      checkedTasksBox.delete(originalItem.text);
+      checkedTasksBox.put(item.text, isDone);
+    }
+  }
+
   void _removeItem(Todo item) {
     final itemIndex = _todos.indexOf(item);
     final bool isDone = checkedTasksBox.get(item.text) ?? false;
@@ -78,11 +100,12 @@ class _KeysState extends State<Keys> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 4),
+        duration: const Duration(seconds: 3),
         content: const Text('Task deleted'),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
+            HapticFeedback.vibrate();
             setState(() {
               _todos.insert(itemIndex, item);
             });
@@ -90,6 +113,7 @@ class _KeysState extends State<Keys> {
             checkedTasksBox.put(item.text, isDone);
           },
         ),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
@@ -156,12 +180,19 @@ class _KeysState extends State<Keys> {
                     ),
                     key: Key(todo.text),
                     onDismissed: (direction) {
+                      HapticFeedback.vibrate();
                       _removeItem(todo);
                     },
-                    child: CheckableTodoItem(
-                      key: ValueKey(todo.text),
-                      todo.text,
-                      todo.priority,
+                    child: GestureDetector(
+                      onLongPress: () {
+                        HapticFeedback.vibrate();
+                        _openEditItemOverlay(todo);
+                      },
+                      child: CheckableTodoItem(
+                        key: ValueKey(todo.text),
+                        todo.text,
+                        todo.priority,
+                      ),
                     ),
                   ),
               ],
@@ -191,7 +222,10 @@ class _KeysState extends State<Keys> {
       ),
       body: mainContent,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _openAddItemOverlay,
+        onPressed: () {
+          HapticFeedback.vibrate();
+          _openAddItemOverlay();
+        },
         label: Text('Add Task'),
         icon: const Icon(Icons.add),
         tooltip: 'Click to add a task...',

@@ -12,4 +12,14 @@ class Todo extends HiveObject {
   final Priority priority;
 
   Todo(this.text, this.priority);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Todo && other.text == text && other.priority == priority;
+  }
+
+  @override
+  int get hashCode => text.hashCode ^ priority.hashCode;
 }
