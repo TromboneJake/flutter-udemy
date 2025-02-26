@@ -25,6 +25,8 @@ jobs:
         env:
           UDEMY_EMAIL: ${{ secrets.UDEMY_EMAIL }}
           UDEMY_PASSWORD: ${{ secrets.UDEMY_PASSWORD }}
+          GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+          GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}
         run: |
           node update-progress.js 2>&1 | tee progress.txt  # Capture both stdout and stderr, still write to progress.txt
           PROGRESS=$(cat progress.txt | grep -o '[0-9]\+' || echo 0)
