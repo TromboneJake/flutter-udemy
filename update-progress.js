@@ -7,28 +7,64 @@ const puppeteer = require('puppeteer');
   });
   const page = await browser.newPage();
 
-  const email = process.env.UDEMY_EMAIL;
-  const password = process.env.UDEMY_PASSWORD;
+  const udemyEmail = process.env.UDEMY_EMAIL;
+  const googleEmail = process.env.GOOGLE_EMAIL; // Add this to GitHub Secrets
+  const googlePassword = process.env.GOOGLE_PASSWORD; // Add this to GitHub Secrets
 
   console.log('Navigating directly to login popup...');
   await page.goto('https://www.udemy.com/join/login-popup/?locale=en_US', { waitUntil: 'networkidle2' });
   console.log('Current URL:', await page.url());
 
   console.log('Waiting for email input...');
+  await page.waitForSelector('input[name="email"]', { timeout: 30000 });
+  console.log('Email input found!');
+  await page.type('input[name="email"]', udemyEmail);
+  await page.click('input[type="submit"]');
+  await page.waitForTimeout(2000); // Brief wait for redirect
+
+  console.log('Looking for Google login button...');
   try {
-    await page.waitForSelector('input[name="email"]', { timeout: 30000 }); // 30s timeout
-    console.log('Email input found!');
-    await page.type('input[name="email"]', email);
-    await page.type('input[name="password"]', password);
-    await page.click('input[type="submit"]');
-    await page.waitForNavigation({ waitUntil: 'networkidle2' });
-    console.log('Logged in, URL:', await page.url());
+    // Adjust selector based on Udemy's Google login button (inspect it)
+    await page.waitForSelector('button[data-purpose="sso-button-google"]', { timeout: 10000 });
+    await page.click('button[data-purpose="sso-button-google"]');
+    console.log('Clicked Google login button');
   } catch (e) {
-    console.log('Error finding email input:', e.message);
+    console.log('Google login button not found:', e.message);
     console.log('Page content:', await page.content());
     await browser.close();
     process.exit(1);
   }
+
+  // Wait for Google popup and switch to it
+  const [popup] = await Promise.all([
+    new Promise(resolve => browser.once('targetcreated', target => resolve(target.page()))),
+    page.waitForTimeout(2000) // Give popup time to appear
+  ]);
+
+  if (!popup) {
+    console.log('Google popup not detected');
+    await browser.close();
+    process.exit(1);
+  }
+
+  console.log('Switched to Google popup');
+  await popup.waitForSelector('input[type="email"]', { timeout: 30000 });
+  await popup.type('input[type="email"]', googleEmail);
+  await popup.click('#identifierNext'); // Next button
+  await popup.waitForTimeout(2000); // Wait for password field
+
+  await popup.waitForSelector('input[type="password"]', { timeout: 30000 });
+  await popup.type('input[type="password"]', googlePassword);
+  await popup.click('#passwordNext'); // Next button
+  await popup.waitForNavigation({ waitUntil: 'networkidle2' });
+
+  console.log('Google login completed, closing popup...');
+  await popup.close();
+
+  // Switch back to main page and wait for Udemy to finish login
+  await page.bringToFront();
+  await page.waitForNavigation({ waitUntil: 'networkidle2' });
+  console.log('Logged in, URL:', await page.url());
 
   console.log('Navigating to courses page...');
   await page.goto('https://www.udemy.com/home/my-courses/learning/', { waitUntil: 'networkidle2' });
