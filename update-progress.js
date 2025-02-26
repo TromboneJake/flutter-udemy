@@ -18,7 +18,7 @@ const puppeteer = require('puppeteer');
   console.log('Looking for Google login button...');
   try {
     // Adjust selector based on Udemy's Google login button (inspect it)
-    await page.waitForSelector('button[aria-label="Continue with Google ID"], { timeout: 10000 }');
+    await page.waitForSelector('button[aria-label="Continue with Google ID"]', { timeout: 10000 });
     await page.click('button[aria-label="Continue with Google ID"]');
     console.log('Clicked Google login button');
   } catch (e) {
