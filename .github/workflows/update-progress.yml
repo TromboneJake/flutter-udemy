@@ -13,14 +13,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: npm install puppeteer
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgbm-dev libxkbcommon-x11-0 libxss1
+      - name: Install Puppeteer
+        run: npm install puppeteer
       - name: Run script and update README
         env:
           UDEMY_EMAIL: ${{ secrets.UDEMY_EMAIL }}
           UDEMY_PASSWORD: ${{ secrets.UDEMY_PASSWORD }}
-          COURSE_URL: ${{ secrets.COURSE_URL }}
         run: |
-          # Save the script as update-progress.js
           node update-progress.js > progress.txt
           PROGRESS=$(cat progress.txt | grep -o '[0-9]\+' || echo 0)
           sed -i "s|https://progress-bar.xyz/[0-9]\+?title=Course%20Progress|https://progress-bar.xyz/$PROGRESS?title=Course%20Progress|" README.md
