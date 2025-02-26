@@ -2,8 +2,8 @@ name: Update Udemy Progress Bar
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
-  workflow_dispatch: # Allows manual triggering
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -16,9 +16,12 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgbm-dev libxkbcommon-x11-0 libxss1
-      - name: Install Puppeteer
-        run: npm install puppeteer
+          sudo apt-get install -y libgbm-dev libxkbcommon-x11-0 libxss1 libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2
+      - name: Install Puppeteer Fresh
+        run: |
+          npm install puppeteer --no-save
+          # Ensure Chromium is downloaded fresh
+          npx puppeteer browsers install chrome
       - name: Run script and update README
         env:
           UDEMY_EMAIL: ${{ secrets.UDEMY_EMAIL }}
