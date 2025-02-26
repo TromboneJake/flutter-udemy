@@ -26,7 +26,7 @@ jobs:
           UDEMY_EMAIL: ${{ secrets.UDEMY_EMAIL }}
           UDEMY_PASSWORD: ${{ secrets.UDEMY_PASSWORD }}
         run: |
-          node update-progress.js > progress.txt
+          node update-progress.js 2>&1 | tee progress.txt  # Capture both stdout and stderr, still write to progress.txt
           PROGRESS=$(cat progress.txt | grep -o '[0-9]\+' || echo 0)
           sed -i "s|https://progress-bar.xyz/[0-9]\+?title=Course%20Progress|https://progress-bar.xyz/$PROGRESS?title=Course%20Progress|" README.md
       - name: Commit changes
