@@ -14,8 +14,8 @@ const puppeteer = require('puppeteer');
 
   // Log in to Udemy
   await page.goto('https://www.udemy.com');
-  await page.type('#email', email);
-  await page.type('#password', password);
+  await page.type('input[name="email"]', email);
+  await page.type('input[name="password"]', password);
   await page.click('#submit-id-submit');
   await page.waitForNavigation();
 
