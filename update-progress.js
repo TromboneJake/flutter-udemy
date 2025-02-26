@@ -18,7 +18,7 @@ const puppeteer = require('puppeteer');
   console.log('Looking for Google login button...');
   try {
     // Adjust selector based on Udemy's Google login button (inspect it)
-    await page.waitForSelector('button[aria-label="Continue with Google ID"]');
+    await page.waitForSelector('button[aria-label="Continue with Google ID"], { timeout: 10000 }');
     await page.click('button[aria-label="Continue with Google ID"]');
     console.log('Clicked Google login button');
   } catch (e) {
@@ -31,7 +31,7 @@ const puppeteer = require('puppeteer');
   // Wait for Google popup and switch to it
   const [popup] = await Promise.all([
     new Promise(resolve => browser.once('targetcreated', target => resolve(target.page()))),
-    page.waitForTimeout(2000) // Give popup time to appear
+    await page.waitForTimeout(2000) // Give popup time to appear
   ]);
 
   if (!popup) {
