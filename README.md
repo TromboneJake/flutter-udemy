@@ -3,7 +3,7 @@
 This repository contains my projects **Flutter & Dart - The Complete Guide [2025 Edition]** course on Udemy. The course, taught by Maximilian Schwarzmüller, covers everything from the basics of Flutter and Dart to advanced app development concepts.
 I will code along with the course and then occasionally add my own functionality to the apps to reinforce my learning. These changes will be documented in each project.
 
-![Course Progress](https://progress-bar.xyz/0?title=Course%20Progress)
+![Course Progress](https://progress-bar.xyz/58?title=Course%20Progress)
 
 ## 📌 Course Overview
 This course provides a comprehensive introduction to Flutter and Dart, teaching how to build cross-platform mobile applications for iOS and Android. Topics include:
