@@ -1,7 +1,11 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch();
+  // Launch Puppeteer with --no-sandbox
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true // Ensure headless mode (default, but explicit here)
+  });
   const page = await browser.newPage();
 
   // Use environment variables from GitHub Secrets
