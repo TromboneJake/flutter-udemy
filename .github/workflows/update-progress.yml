@@ -1,0 +1,33 @@
+name: Update Udemy Progress Bar
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm install puppeteer
+      - name: Run script and update README
+        env:
+          UDEMY_EMAIL: ${{ secrets.UDEMY_EMAIL }}
+          UDEMY_PASSWORD: ${{ secrets.UDEMY_PASSWORD }}
+          COURSE_URL: ${{ secrets.COURSE_URL }}
+        run: |
+          # Save the script as update-progress.js
+          node update-progress.js > progress.txt
+          PROGRESS=$(cat progress.txt | grep -o '[0-9]\+' || echo 0)
+          sed -i "s|https://progress-bar.xyz/[0-9]\+?title=Course%20Progress|https://progress-bar.xyz/$PROGRESS?title=Course%20Progress|" README.md
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add README.md
+          git commit -m "Update Udemy course progress" || echo "No changes"
+          git push
