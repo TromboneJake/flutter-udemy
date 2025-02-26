@@ -15,18 +15,11 @@ const puppeteer = require('puppeteer');
   await page.goto('https://www.udemy.com/join/login-popup/?locale=en_US', { waitUntil: 'networkidle2' });
   console.log('Current URL:', await page.url());
 
-  console.log('Waiting for email input...');
-  await page.waitForSelector('input[name="email"]', { timeout: 30000 });
-  console.log('Email input found!');
-  await page.type('input[name="email"]', udemyEmail);
-  await page.click('input[type="submit"]');
-  await page.waitForTimeout(2000); // Brief wait for redirect
-
   console.log('Looking for Google login button...');
   try {
     // Adjust selector based on Udemy's Google login button (inspect it)
-    await page.waitForSelector('button[data-purpose="sso-button-google"]', { timeout: 10000 });
-    await page.click('button[data-purpose="sso-button-google"]');
+    await page.waitForSelector('button[aria-label="Continue with Google ID"]');
+    await page.click('button[aria-label="Continue with Google ID"]');
     console.log('Clicked Google login button');
   } catch (e) {
     console.log('Google login button not found:', e.message);
