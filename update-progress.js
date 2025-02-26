@@ -10,27 +10,13 @@ const puppeteer = require('puppeteer');
   const email = process.env.UDEMY_EMAIL;
   const password = process.env.UDEMY_PASSWORD;
 
-  console.log('Navigating to Udemy homepage...');
-  await page.goto('https://www.udemy.com', { waitUntil: 'networkidle2' });
-
-  // Log current URL to verify where we are
+  console.log('Navigating directly to login popup...');
+  await page.goto('https://www.udemy.com/join/login-popup/?locale=en_US', { waitUntil: 'networkidle2' });
   console.log('Current URL:', await page.url());
 
-  // Try clicking login link if on homepage
-  try {
-    console.log('Looking for login link...');
-    await page.waitForSelector('a[data-purpose="header-login"]', { timeout: 5000 });
-    await page.click('a[data-purpose="header-login"]');
-    await page.waitForNavigation({ waitUntil: 'networkidle2' });
-    console.log('Clicked login link, new URL:', await page.url());
-  } catch (e) {
-    console.log('Login link not found or already on login page:', e.message);
-  }
-
-  // Wait for email field with longer timeout and log page content if it fails
   console.log('Waiting for email input...');
   try {
-    await page.waitForSelector('input[name="email"]', { timeout: 20000 }); // 20s timeout
+    await page.waitForSelector('input[name="email"]', { timeout: 30000 }); // 30s timeout
     console.log('Email input found!');
     await page.type('input[name="email"]', email);
     await page.type('input[name="password"]', password);
@@ -39,12 +25,12 @@ const puppeteer = require('puppeteer');
     console.log('Logged in, URL:', await page.url());
   } catch (e) {
     console.log('Error finding email input:', e.message);
-    console.log('Page content:', await page.content()); // Log HTML for debugging
+    console.log('Page content:', await page.content());
     await browser.close();
-    process.exit(1); // Exit with error
+    process.exit(1);
   }
 
-  // Go to enrolled courses page
+  console.log('Navigating to courses page...');
   await page.goto('https://www.udemy.com/home/my-courses/learning/', { waitUntil: 'networkidle2' });
 
   const progress = await page.evaluate(() => {
