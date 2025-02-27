@@ -1,16 +1,25 @@
-# meals_app
+# 🍔 Meals App
+An app for discovering meals by cuisine. It features multiple screens including a filter select screen for a user to toggle and display only meals that fit those filters, such as vegan or gluten-free.
 
-A new Flutter project.
+*Screenshot(s) coming soon*
 
-## Getting Started
+The next section of the course focuses on 2 different statemanagement solutions - Riverpod and Provider. The section after that is about adding animations. Both of these will be added to this app so check back for those updates.
 
-This project is a starting point for a Flutter application.
+## ✨ Features  
+- View a list of cuisine categories and select one to view meals from it
+- Favorite a meal to add it to your favorites list for easy access
+- Filter out certain meals based on dietary restrictions such as gluten-free, lactose-free, vegetarian, or vegan
 
-A few resources to get you started if this is your first Flutter project:
+## 🗒️ Notes
+This section focused on navigation and routing between multiple screens, with a navigation bar and side drawer, and managing state and data between them. ~~A few different state management solutions were explored, Riverpod and Provider, as well as some animation between screens~~ 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 How to Run  
+1. Ensure Flutter is installed ([Installation Guide](https://flutter.dev/docs/get-started/install)).  
+2. Clone the repository:  
+   ```sh
+   git clone <repo-url>
+   cd meals_app
+3. Start a compatible emulator.
+4. Run the app:
+    ```sh
+    flutter run
