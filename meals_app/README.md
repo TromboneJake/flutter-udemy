@@ -11,7 +11,7 @@ The next section focuses on adding animations to the app. Check back soon for th
 - Filter out certain meals based on dietary restrictions such as gluten-free, lactose-free, vegetarian, or vegan
 
 ## 🗒️ Notes
-This section focused on navigation and routing between multiple screens, with a navigation bar and side drawer, and managing state and data between them. Afterwards, the app was updated to remove state management by passing around code and instead to manage app-wide state via [Riverpod](https://riverpod.dev/). App animations and transitions are coming soon!
+This section focused on navigation and routing between multiple screens, with a navigation bar and side drawer, and managing state and data between them. Afterwards, the app was updated to remove state management by passing around code and instead to manage app-wide state via [Riverpod](https://riverpod.dev/). Finally, some app animations were added like having the grid of categories scroll up from the bottom, this was added with explicit animations. An animation to spin the star when a meal was favorited/unfavorited was added with an implicit animation. An animation on the image when switching screens from the list of meals to a specific meal was also added by wrapping the images on both screens with a Hero widget and adding a tag parameter.
 
 ## 🚀 How to Run  
 1. Ensure Flutter is installed ([Installation Guide](https://flutter.dev/docs/get-started/install)).  
