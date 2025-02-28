@@ -3,7 +3,7 @@
 This repository contains my projects **Flutter & Dart - The Complete Guide [2025 Edition]** course on Udemy. The course, taught by Maximilian Schwarzmüller, covers everything from the basics of Flutter and Dart to advanced app development concepts.
 I will code along with the course and then occasionally add my own functionality to the apps to reinforce my learning. These changes will be documented in each project.
 
-![Course Progress](https://progress-bar.xyz/58?title=Course%20Progress)
+![Course Progress](https://progress-bar.xyz/76?title=Course%20Progress)
 
 ## 📌 Course Overview
 This course provides a comprehensive introduction to Flutter and Dart, teaching how to build cross-platform mobile applications for iOS and Android. Topics include:
@@ -25,9 +25,9 @@ Throughout the course, I will build several real-world projects, including:
 - [**Quiz App**](https://github.com/TromboneJake/flutter-udemy/tree/main/quiz_app): The Quiz App is a multi-screen Flutter application that allows users to take a quiz and see their score and correct answers at the end. I changed the questions and may add functionality to upload custom question sets later.
 - [**Expense Tracker App**](https://github.com/TromboneJake/flutter-udemy/tree/main/expense_tracker_app): The Expense Tracker App is a responsive and adaptive app for tracking expenses and displaying them in a list as well as visually in a chart by category. Needs functionality to store and persist data. 
 - [**ToDo App**](https://github.com/TromboneJake/flutter-udemy/tree/main/todo_app): The Todo App is a lightweight task tracker to add tasks with priority and priority-based sorting. Swipe a task to delete it or check it to cross it off the list. Data is stored locally with the [Hive](https://github.com/isar/hive) package.  
-- [**Meals App**](https://github.com/TromboneJake/flutter-udemy/tree/main/meals_app): The Meal App is an app for discovering meals by cuisine. It features multiple screens including a filter select screen for a user to toggle and display only meals that fit those filters, such as vegan or gluten-free. 
-- **Shopping List App**
-- **Favorite Places App**
+- [**Meals App**](https://github.com/TromboneJake/flutter-udemy/tree/main/meals_app): The Meal App is an app for discovering meals by cuisine. It features multiple screens including a filter select screen for a user to toggle and display only meals that fit those filters, such as vegan or gluten-free. App-wide state was managed with [Riverpod](https://riverpod.dev).
+- [**Shopping List App**](https://github.com/TromboneJake/flutter-udemy/tree/main/shopping_list_app): The Shopping List app is an app for creating a list of grocery items. This was the first app to implement a backend using [Firebase](https://firebase.google.com/docs) and [HTTP](https://pub.dev/packages/http) requests.
+- **Favorite Places App**: *In progress*
 - **Chat App**
 
 ## 🗒️ Notes
