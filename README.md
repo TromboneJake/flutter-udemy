@@ -3,7 +3,7 @@
 This repository contains my projects **Flutter & Dart - The Complete Guide [2025 Edition]** course on Udemy. The course, taught by Maximilian Schwarzmüller, covers everything from the basics of Flutter and Dart to advanced app development concepts.
 I will code along with the course and then occasionally add my own functionality to the apps to reinforce my learning. These changes will be documented in each project.
 
-![Course Progress](https://progress-bar.xyz/76?title=Course%20Progress)
+![Course Progress](https://progress-bar.xyz/88?title=Course%20Progress)
 
 ## 📌 Course Overview
 This course provides a comprehensive introduction to Flutter and Dart, teaching how to build cross-platform mobile applications for iOS and Android. Topics include:
@@ -27,7 +27,7 @@ Throughout the course, I will build several real-world projects, including:
 - [**ToDo App**](https://github.com/TromboneJake/flutter-udemy/tree/main/todo_app): The Todo App is a lightweight task tracker to add tasks with priority and priority-based sorting. Swipe a task to delete it or check it to cross it off the list. Data is stored locally with the [Hive](https://github.com/isar/hive) package.  
 - [**Meals App**](https://github.com/TromboneJake/flutter-udemy/tree/main/meals_app): The Meal App is an app for discovering meals by cuisine. It features multiple screens including a filter select screen for a user to toggle and display only meals that fit those filters, such as vegan or gluten-free. App-wide state was managed with [Riverpod](https://riverpod.dev).
 - [**Shopping List App**](https://github.com/TromboneJake/flutter-udemy/tree/main/shopping_list_app): The Shopping List app is an app for creating a list of grocery items. This was the first app to implement a backend using [Firebase](https://firebase.google.com/docs) and [HTTP](https://pub.dev/packages/http) requests.
-- **Favorite Places App**: *In progress*
+- [**Favorite Places App**](https://github.com/TromboneJake/flutter-udemy/tree/main/favorite_places_app): The Favorite Places app allows a user to add their favorite places to a list. Creating a favorite places has a user take a picture with their device with use of the [Image Picker](https://pub.dev/packages/image_picker) package, as well as set a location of the place with use of the [Google Maps API](https://developers.google.com/maps). These places are then stored in an [SQFLite](https://pub.dev/packages/sqflite) database so when a user returns to the app they can still view their favorite places. App-wide state was again managed with [Riverpod](https://riverpod.dev).
 - **Chat App**
 
 ## 🗒️ Notes
