@@ -1,9 +1,14 @@
 # 🍔 Meals App
 An app for discovering meals by cuisine. It features multiple screens including a filter select screen for a user to toggle and display only meals that fit those filters, such as vegan or gluten-free. This app features state management with the [Riverpod](https://riverpod.dev/) package.
 
-*Screenshot(s) coming soon*
-
-The next section focuses on adding animations to the app. Check back soon for that!
+<div style="display: flex; flex-direction: row;">
+   <img src="https://github.com/user-attachments/assets/2dcfccad-2a6a-4cdd-a9d1-44e9931514e1" width=16%>
+   <img src="https://github.com/user-attachments/assets/ca4aab86-a3be-4bdb-96e1-8d8078363047" width=16%>
+   <img src="https://github.com/user-attachments/assets/ae63a944-a746-4413-a21a-70d092a00e88" width=16%>
+   <img src="https://github.com/user-attachments/assets/24c700df-f43a-414f-bf16-ee103ce6c77b" width=16%>
+   <img src="https://github.com/user-attachments/assets/25c4145b-fa44-47ff-8562-79e04383e2cd" width=16%>
+   <img src="https://github.com/user-attachments/assets/38a3c545-3e7f-4dce-adb5-6232eb2e0992" width=16%>
+</div>
 
 ## ✨ Features  
 - View a list of cuisine categories and select one to view meals from it
